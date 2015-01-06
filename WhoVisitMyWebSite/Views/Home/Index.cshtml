@@ -1,0 +1,43 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<WhoVisitMyWebSite.Models.Client>
+
+ 
+@{
+    ViewBag.Title = "Home Page";
+}
+<table class="table">
+    <tr>
+        <th>
+            客户名
+        </th>
+        <th>
+             外网IP
+        </th>
+        <th>
+            备注
+        </th>
+        <th>
+            时间
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
